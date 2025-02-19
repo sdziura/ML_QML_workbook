@@ -6,7 +6,7 @@ import matplotlib
 matplotlib.use('TkAgg')  
 
 # Wczytaj zapisane dane z treningu
-data = np.load("NN/loss_values.npz", allow_pickle=True)
+data = np.load("NN/results.npz", allow_pickle=True)
 trainingEpoch_loss = data["train_loss"]
 validationEpoch_loss = data["val_loss"]
 y_test = data["y_test"]
@@ -21,7 +21,8 @@ x_axis = range(epochs)
 min_sum = 0
 for fold in range(folds):
     min_loss = min(validationEpoch_loss[fold])
-    print(f"Minimal loss for fold {fold}: {round(min_loss, 4)}")
+    min_loss_index = np.argmin(validationEpoch_loss[fold])
+    print(f"Minimal loss for fold {fold}: {round(min_loss, 4)} (Epoch: {min_loss_index})")
     min_sum += min_loss
 
 mean_min_loss = min_sum/folds

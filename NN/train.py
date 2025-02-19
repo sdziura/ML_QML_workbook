@@ -9,7 +9,7 @@ from sklearn.model_selection import StratifiedKFold
 from model import Two_Layer_Model
 
 # Setting random seed
-seed = 50
+seed = 42
 random.seed(seed)
 torch.manual_seed(seed)
 
@@ -118,4 +118,4 @@ np.savez("NN/results.npz",
          val_loss=validationEpoch_loss,
          y_test=y_test_list, 
          y_test_pred=y_test_pred_list)
-print("Loss values saved to loss_values.npz")
+print("Loss values saved to results.npz")
